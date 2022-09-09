@@ -1,11 +1,24 @@
+import { createSlice } from '@reduxjs/toolkit';
 import {PARTNERS} from '../../app/shared/PARTNERS';
 
-export const selectAllPartners = () =>{
-    return PARTNERS;
+const initialState = {
+    partnersArray: PARTNERS
+};
+
+const partnerSlice = createSlice({
+    name: 'partners',
+    initialState
+
+})
+
+export const partnersReducer = partnerSlice.reducer;
+
+export const selectAllPartners = (state) =>{
+    return state.partners.partnersArray;
 
 }
 
-export const selectFeaturedPartner = () => {
-    return PARTNERS.find(partner => partner.featured);
+export const selectFeaturedPartner = (state) => {
+    return state.partners.partnersArray.find(partner => partner.featured);
 
 }
